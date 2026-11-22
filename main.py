@@ -4,8 +4,37 @@
 # print("Hello")
 
 from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+# Field - bu busines standartlar(masalan ism qisqa yoki uzun bo'lib ketmasligi)
+# Ellipses degani ham bor ekan. bu 3 ta nuqta ekan. bu degani malumot kiritilishi shart degani
+
 app = FastAPI()
 
+
+class User(BaseModel):
+    name: str = Field(min_length=2, max_length=50)
+    age: int = Field(gt=0, lt=150)
+    is_active: bool = True
+    
+    # ge - greater or equal
+    # le - lesser or equal
+    
+f1 = User(name="Vali", age=25)
+print(f1)
+# f2 = User(name="Vali", age=-25) #bunda error beradi
+# print(f2)
+    
+# user = User(name="Otabek", age=25, is_active=True)
+# print(user)    
+# user = User(name="Otabek", age="Yigirma besh", is_active=True)   #Error beradi
+# print(user) 
+user = User(name="Otabek", age="25", is_active=True)   #Lekin bu ko'rinishda ishlashiga pydantic aqli yetadi
+print(user)
+print(user.age)
+print(type(user.age)) 
+    
+    
 @app.get("/")
 def read_root():
     return {"Hello: learner"}
