@@ -42,3 +42,13 @@ def read_root():
 @app.get("/items/item_id")
 def read_item(item_id: int, q:str | None = None):
     return {"item_id": item_id, "q": q}
+
+
+
+class Product(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    price: float = Field(..., gt=0)
+    description: str = Field(default="Tavsif yo'q", max_length=500)
+    
+p1 = Product(name="Phone", price = 1500)
+print(p1.description)
