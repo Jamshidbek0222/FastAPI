@@ -52,3 +52,21 @@ class Product(BaseModel):
     
 p1 = Product(name="Phone", price = 1500)
 print(p1.description)
+
+
+
+
+
+# Serialization - serializatsiya
+# Deserialization - deserializatsiya
+
+# JSON
+
+
+# user = User(name = "Ali", age = 24)  #Pydantic object
+# data = user.model_dump()   #Python object  - V2 Pydantic
+# print(data)
+
+user = User(name = "Ali", age = 24)  #Pydantic object
+data = user.model_dump_json()   # JSON string
+print(data)
