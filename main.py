@@ -67,6 +67,12 @@ print(p1.description)
 # data = user.model_dump()   #Python object  - V2 Pydantic
 # print(data)
 
-user = User(name = "Ali", age = 24)  #Pydantic object
-data = user.model_dump_json()   # JSON string
-print(data)
+# user = User(name = "Ali", age = 24)  #Pydantic object
+# data = user.model_dump_json()   # JSON string
+# print(data)
+
+
+
+
+# JSON dan pydantic objectga o'tkazish
+data = {"name": "Vali", "age": 32, "is_active": False}
