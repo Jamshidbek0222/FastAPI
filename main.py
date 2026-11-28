@@ -4,7 +4,7 @@
 # print("Hello")
 
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 # Field - bu busines standartlar(masalan ism qisqa yoki uzun bo'lib ketmasligi)
 # Ellipses degani ham bor ekan. bu 3 ta nuqta ekan. bu degani malumot kiritilishi shart degani
@@ -75,4 +75,19 @@ print(p1.description)
 
 
 # JSON dan pydantic objectga o'tkazish
+# data = {"name": "Vali", "age": 32, "is_active": False}
+# user = User.model_validate(data)
+# print(user)
+
+
+
+
+class User(BaseModel):
+    model_config = ConfigDict(populate_by_name = True)
+    
+    first_name: str = Field(alias="firstName")
+    is_active: bool = Field(alias="isActive", default=True)
+    
 data = {"name": "Vali", "age": 32, "is_active": False}
+user = User.model_validate(data)
+print(user)
